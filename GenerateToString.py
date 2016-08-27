@@ -1,7 +1,7 @@
 import os
 class GenerateToString:
     def __init__(self):
-        self.postfix = "VO.java"
+        self.postfix = ".java"
         self.path = "C:\\_JSP\\workspaceHiber\\healthy\\src\\main\\java\\com\\massuer\\healthy\\model\\entity"
         self.field_types = ["int", "Integer", "Double", "double", "Float", "float", "Long", " long", "byte", "Byte", "short", "Short",
                         "boolean", "Boolean", "Char", "char", "Date", "String", "GirlMassageTypeVO"];
@@ -51,7 +51,10 @@ if __name__ == '__main__':
     generator = GenerateToString()
     filenames = generator.get_all_vo_files()
     for filename in filenames:
-        full_path_file_name = generator.path+"\\"+filename
-        field_type_list = generator.parse_fields(full_path_file_name)
-        tostring_str = generator.build_tostring(field_type_list)
-        generator.write_tostring(full_path_file_name, tostring_str)
+        try:
+            full_path_file_name = generator.path+"\\"+filename
+            field_type_list = generator.parse_fields(full_path_file_name)
+            tostring_str = generator.build_tostring(field_type_list)
+            generator.write_tostring(full_path_file_name, tostring_str)
+        except:
+            pass
