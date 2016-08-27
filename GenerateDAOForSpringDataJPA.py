@@ -17,7 +17,7 @@ class GenerateDAOForSpringDataJPA:
     def build_file_str(self, filename):
         package_str = "package "+self.dao_package_path +";\n\n"
         import_str = "import org.springframework.data.jpa.repository.JpaRepository;\n"+"import "+ self.entity_package_path +"."+ filename.strip(self.entity_file_postfix)+ ";\n\n"
-        interface_str = "public interface "+filename.strip(self.entity_file_postfix)+ self.dao_postfix + " extends JpaRepository<"+filename.strip(self.entity_file_postfix)+", Long>{\n}"
+        interface_str = "public interface "+filename.strip(self.entity_file_postfix)+ self.dao_postfix + " extends JpaRepository<"+filename.strip(self.entity_file_postfix)+", Integer>{\n}"
         return package_str+import_str+interface_str
 
     def build_file(self, filename, file_str):
