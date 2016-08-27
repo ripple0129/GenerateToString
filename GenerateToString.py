@@ -25,13 +25,13 @@ class GenerateToString:
         fp.close()
         return field_type_list
 
-    def build_tostring(self, field_type_list):
+    def build_tostring(self, filename, field_type_list):
         tostring_str = ''.join('    public String toString(){\n       return ')
-        tostring_str = tostring_str + ' \"' + field_type_list[0].strip('\n') + ':\"+' + field_type_list[0].strip('\n') +'+'
+        tostring_str = tostring_str + '\"' +filename.strip('.java') + '{\"+' + ' \"' + field_type_list[0].strip('\n') + ':\"+' + field_type_list[0].strip('\n') +'+'
         for field_type in field_type_list[1:-1]:
             field_type = field_type.strip('\n')
             tostring_str = tostring_str + ' \" ,' + field_type + ':\"+' + field_type +'+'
-        tostring_str = tostring_str + ' \" ,' + field_type_list[-1].strip('\n') + ':\"+' + field_type_list[-1].strip('\n') + ';\n    }\n}'
+        tostring_str = tostring_str + ' \" ,' + field_type_list[-1].strip('\n') + ':\"+' + field_type_list[-1].strip('\n') + '+\"}\";\n    }\n}'
         return tostring_str
 
     def write_tostring(self, full_path_file_name, tostring_str):
@@ -54,7 +54,7 @@ if __name__ == '__main__':
         try:
             full_path_file_name = generator.path+"\\"+filename
             field_type_list = generator.parse_fields(full_path_file_name)
-            tostring_str = generator.build_tostring(field_type_list)
+            tostring_str = generator.build_tostring(filename, field_type_list)
             generator.write_tostring(full_path_file_name, tostring_str)
         except:
             pass
