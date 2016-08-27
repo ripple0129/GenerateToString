@@ -12,3 +12,6 @@ https://www.python.org/downloads/
 
 檔案下載調整__init__的內容
 於cmd執行python GenerateToString.py
+
+使用GenerateDAOForSpringDataJPA後
+於IDE中請Refresh才看的到檔案產生
